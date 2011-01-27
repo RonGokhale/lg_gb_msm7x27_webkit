@@ -430,6 +430,12 @@ WebFrame::startLoadingResource(WebCore::ResourceHandle* loader,
         if (size > 0) {
             // Copy the actual form data.
             jPostDataStr = env->NewByteArray(size);
+            //BANDY_S_WE0000000005 WEBKIT [hyunyong.kim@lge.com 101221] Fix exception when uploading a large file
+            if (!jPostDataStr) {
+                env->ExceptionClear();
+            }
+            //BANDY_E_WE0000000005
+
             if (jPostDataStr) {
                 // Write  the form data to the java array.
                 jbyte* bytes = env->GetByteArrayElements(jPostDataStr, NULL);
