@@ -223,6 +223,11 @@ LOCAL_CFLAGS += -fno-strict-aliasing
 LOCAL_CFLAGS += -include "WebCorePrefix.h"
 LOCAL_CFLAGS += -fvisibility=hidden
 
+# Comment this line below to disable the ImageDecode thread which
+# caches decoded images.
+# LGE_WEB_S : disable CACHED_IMAGE_DECODE which causes side effect to render some site.
+#LOCAL_CFLAGS += -DCACHED_IMAGE_DECODE
+
 # Enable JSC JIT if JSC is used and ENABLE_JSC_JIT environment
 # variable is set to true
 ifeq ($(JAVASCRIPT_ENGINE),jsc)
@@ -239,9 +244,11 @@ endif
 
 # need a flag to tell the C side when we're on devices with large memory
 # budgets (i.e. larger than the low-end devices that initially shipped)
-ifeq ($(ARCH_ARM_HAVE_VFP),true)
+
+# LGE_WEB_S : enable animated gif
+#ifeq ($(ARCH_ARM_HAVE_VFP),true)
 LOCAL_CFLAGS += -DANDROID_LARGE_MEMORY_DEVICE
-endif
+#endif
 
 ifeq ($(ENABLE_SVG),true)
 LOCAL_CFLAGS += -DENABLE_SVG=1

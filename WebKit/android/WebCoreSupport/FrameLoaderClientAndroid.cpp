@@ -755,15 +755,13 @@ bool FrameLoaderClientAndroid::canHandleRequest(const ResourceRequest& request) 
 }
 
 bool FrameLoaderClientAndroid::canShowMIMEType(const String& mimeType) const {
-	
-    //BANDY_S_WE0000000006 WEBKIT [hyunyong.kim@lge.com 101221] exception in case of dd(OMA download descriptor), jad and roap
+	// LGE_WEB_S : 20100318 exception in case of dd(OMA download descriptor) and jad.
 	if (mimeType == "application/vnd.oma.dd+xml"
 		|| mimeType == "application/vnd.oma.drm.roap-trigger+xml"
 		|| mimeType == "text/vnd.sun.j2me.app-descriptor"
 	)
 		return false;
-	//BANDY_E_WE0000000006
-	
+	// LGE_WEB_E	
     // FIXME: This looks like it has to do with whether or not a type can be
     // shown "internally" (i.e. inside the browser) regardless of whether
     // or not the browser is doing the rendering, e.g. a full page plugin.
