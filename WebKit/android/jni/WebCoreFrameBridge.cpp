@@ -434,6 +434,13 @@ WebFrame::startLoadingResource(WebCore::ResourceHandle* loader,
         if (size > 0) {
             // Copy the actual form data.
             jPostDataStr = env->NewByteArray(size);
+
+            // LGE_WEB_S Alessi 20100803 hyunyong.kim@lge.com VM out of memory exception handling
+            if (!jPostDataStr) {
+                env->ExceptionClear();
+            }
+            // LGE_WEB_E
+
             if (jPostDataStr) {
                 // Write  the form data to the java array.
                 jbyte* bytes = env->GetByteArrayElements(jPostDataStr, NULL);
