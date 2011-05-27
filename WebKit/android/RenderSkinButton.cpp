@@ -45,10 +45,12 @@ struct PatchData {
 
 static const PatchData gFiles[] =
     {
-        { "btn_default_normal_disable.9.png", 2, 7 },
-        { "btn_default_normal.9.png", 2, 7 },
-        { "btn_default_selected.9.png", 2, 7 },
-        { "btn_default_pressed.9.png", 2, 7 }
+// LGE_WEB_S : button image display issue (Muscat (C660) only)
+        { "btn_webkit_default_normal_disable.9.png", 2, 7 },
+        { "btn_webkit_default_normal.9.png", 2, 7 },
+        { "btn_webkit_default_selected.9.png", 2, 7 },
+        { "btn_webkit_default_pressed.9.png", 2, 7 }
+// LGE_WEB_E
     };
 
 static SkBitmap gButton[sizeof(gFiles)/sizeof(gFiles[0])];
